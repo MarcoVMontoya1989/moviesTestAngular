@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Find the Movies</h1>
+            <p>
+                Search for a movie using the form below
+            </p>
+            <form (submit)="searchMovie()">
+                <input type="text" [(ngModel)]="searchString2" name="searchString2" class="form-control">
+                <br>
+                <button class="btn btn-primary btn-lg">Find</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--Search Results-->
+<div *ngIf="searchResult">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Search Result</h3>
+        </div>
+        <div class="row">
+            <div *ngFor="let resultMovie of searchResult;" class="col-md-2">
+                <div class="">
+                    <img src="http://image.tmdb.org/t/p/w500/{{resultMovie.poster_path}}" class="thumbnail" *ngIf="resultMovie.poster_path">
+                    <h4>
+                        {{resultMovie.title}}
+                    </h4>
+                    <p>
+                        {{resultMovie.release_date}}
+                    </p>
+                    <p><a routerLink="/details/{{resultMovie.id}}" class="btn btn-primary">View Details</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Search Results-->
+
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Popular Movies</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let popular of bestList; let i=index" class="col-md-2">
+            <!--{{popular.title}}-->
+            <div class="" *ngIf="i < 6">
+                <img src="http://image.tmdb.org/t/p/w500/{{popular.poster_path}}" class="thumbnail" *ngIf="popular.poster_path">
+                <h4>
+                    {{popular.title}}
+                </h4>
+                <p>
+                    {{popular.release_date}}
+                </p>
+                <p><a routerLink="/details/{{popular.id}}" class="btn btn-primary">View Details</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">In Theatre Now!</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let theatre of intheatre; let i=index" class="col-md-2">
+            <!--{{popular.title}}-->
+            <div class="" *ngIf="i < 6">
+                <img src="http://image.tmdb.org/t/p/w500/{{theatre.poster_path}}" class="thumbnail" *ngIf="theatre.poster_path">
+                <h4>
+                    {{theatre.title}}
+                </h4>
+                <p>
+                    {{theatre.release_date}}
+                </p>
+                <p><a routerLink="/details/{{theatre.id}}" class="btn btn-primary">View Details</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,20 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
+import { MovieComponent } from './movies/movie.component';
+import { MovieService } from './service/movie.service';
+import {appRoutesProvider, routing} from './app.routing';
+import {DetailsComponent} from './details/details.component';
 
 import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, MovieComponent, DetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    JsonpModule, routing
   ],
-  providers: [],
+  providers: [MovieService, appRoutesProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
